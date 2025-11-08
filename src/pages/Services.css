@@ -1,0 +1,185 @@
+/* ==================== pages/Services.css ==================== */
+.services-page {
+  padding-top: 80px;
+}
+
+.services-hero {
+  padding: var(--spacing-xl) 0;
+  background: linear-gradient(180deg, var(--surface), transparent);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.services-hero h1 {
+  margin: var(--spacing-sm) 0 var(--spacing-md);
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.service-detail {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: var(--spacing-lg);
+  transition: all var(--transition-normal);
+}
+
+.service-detail:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg), var(--glow);
+}
+
+.service-detail-header {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.service-detail-icon {
+  font-size: 4rem;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(61, 90, 241, 0.2), rgba(212, 175, 55, 0.2));
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.service-detail-description {
+  font-size: 1.125rem;
+  margin-top: 0.5rem;
+}
+
+.service-detail-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--spacing-lg);
+}
+
+.service-detail-section h3 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.features-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.features-list li:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.features-list .check {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.service-detail-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sidebar-item {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--spacing-md);
+}
+
+.sidebar-item h4 {
+  margin-bottom: var(--spacing-xs);
+  color: var(--accent-light);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-item ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-item ul li {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.sidebar-item ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.sidebar-item p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.services-cta {
+  padding: var(--spacing-xl) 0;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  text-align: center;
+  border-top: 1px solid var(--border);
+  margin-top: var(--spacing-xl);
+}
+
+.services-cta h2 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.services-cta p {
+  margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 968px) {
+  .service-detail-header {
+    flex-direction: column;
+  }
+  
+  .service-detail-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
