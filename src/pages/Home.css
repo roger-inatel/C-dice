@@ -9,12 +9,11 @@
 /* Fundo Home - Expressivo e Inspirador */
 .home::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  min-height: 100vh;
   background: var(--background);
   z-index: -3;
   pointer-events: none;
@@ -23,12 +22,11 @@
 /* Grade tecnológica animada */
 .home::after {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  min-height: 100vh;
   background-image: 
     linear-gradient(rgba(61, 90, 241, 0.08) 2px, transparent 2px),
     linear-gradient(90deg, rgba(61, 90, 241, 0.08) 2px, transparent 2px);

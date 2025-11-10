@@ -1,12 +1,11 @@
 /* components/HeroSection.css */
 .hero {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: calc(var(--spacing-xl) + 80px) 0 var(--spacing-xl);
-  overflow: hidden;
+  padding: calc(var(--spacing-xl) + 100px) 0 var(--spacing-xl);
+  overflow: visible;
 }
 
 /* Background animado */
@@ -17,6 +16,7 @@
   right: 0;
   bottom: 0;
   z-index: 0;
+  pointer-events: none;
 }
 
 .hero-grid {
@@ -30,6 +30,7 @@
     linear-gradient(90deg, rgba(61, 90, 241, 0.05) 2px, transparent 2px);
   background-size: 100px 100px;
   animation: gridMove 20s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes gridMove {
@@ -56,6 +57,7 @@
   );
   filter: blur(100px);
   animation: pulse 4s ease-in-out infinite;
+  pointer-events: none;
 }
 
 /* Conteúdo */
@@ -205,7 +207,6 @@
 /* Responsividade */
 @media (max-width: 768px) {
   .hero {
-    min-height: 85vh;
     padding: calc(var(--spacing-lg) + 80px) var(--spacing-md) var(--spacing-lg);
   }
   

@@ -11,10 +11,11 @@
 }
 
 .main-content {
-  flex: 1;
+  flex: 1 0 auto;
   position: relative;
   z-index: 1;
   width: 100%;
+  overflow-x: hidden;
 }
 
 /* Garantir que o footer sempre apareça acima dos fundos */
@@ -22,4 +23,5 @@
   position: relative;
   z-index: 100;
   margin-top: auto;
+  flex-shrink: 0;
 }
