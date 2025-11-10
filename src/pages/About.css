@@ -1,6 +1,64 @@
 /* pages/About.css */
 .about-page {
   padding-top: 80px;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Fundo Sobre - Institucional e Confiável */
+.about-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background);
+  z-index: -3;
+}
+
+/* Textura horizontal sutil - Papel digital */
+.about-page::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(61, 90, 241, 0.02) 2px,
+      rgba(61, 90, 241, 0.02) 4px
+    );
+  z-index: -2;
+}
+
+/* Luz difusa horizontal */
+.about-hero {
+  position: relative;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(61, 90, 241, 0.08) 30%,
+    rgba(212, 175, 55, 0.06) 50%,
+    rgba(61, 90, 241, 0.08) 70%,
+    transparent
+  );
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Hero */
@@ -309,16 +367,97 @@
 
 @media (max-width: 768px) {
   .about-hero {
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .about-hero-content {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .about-hero h1 {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+  }
+  
+  .lead {
+    font-size: 1rem;
+  }
+  
+  .story-content,
+  .skills-content {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .story-content h2,
+  .skills-content h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  
+  .story-content p,
+  .skills-content p {
+    font-size: 0.95rem;
+  }
+  
+  .visual-box {
+    min-height: 150px;
+    padding: var(--spacing-sm);
+  }
+  
+  .box-content h3 {
+    font-size: 2.5rem;
+  }
+  
+  .box-content p {
+    font-size: 0.9rem;
+  }
+  
+  .value-card {
+    padding: var(--spacing-sm);
+  }
+  
+  .value-icon {
+    font-size: 2.5rem;
+  }
+  
+  .value-card h3 {
+    font-size: 1.25rem;
+  }
+  
+  .value-card p {
+    font-size: 0.95rem;
+  }
+  
+  .skill-item {
+    gap: 0.4rem;
+  }
+  
+  .skill-name {
+    font-size: 0.95rem;
+  }
+  
+  .skill-percentage {
+    font-size: 0.85rem;
   }
 
   .about-cta .cta-buttons {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
   }
 
   .about-cta .btn {
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .about-cta .cta-content {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .about-cta h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  
+  .about-cta p {
+    font-size: 1rem;
   }
 }

@@ -1,6 +1,98 @@
 /* ==================== pages/Services.css ==================== */
 .services-page {
   padding-top: 80px;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Fundo Serviços - Arquitetura Digital */
+.services-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background);
+  z-index: -4;
+}
+
+/* Elementos geométricos e traços técnicos */
+.services-page::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(45deg, transparent 48%, rgba(61, 90, 241, 0.03) 48%, rgba(61, 90, 241, 0.03) 52%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(212, 175, 55, 0.02) 48%, rgba(212, 175, 55, 0.02) 52%, transparent 52%);
+  background-size: 120px 120px;
+  z-index: -3;
+}
+
+/* Gradiente arquitetônico */
+.services-hero {
+  position: relative;
+}
+
+.services-hero::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(61, 90, 241, 0.15),
+    transparent 60%
+  );
+  filter: blur(100px);
+  animation: floatLeft 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.services-list {
+  position: relative;
+}
+
+.services-list::before {
+  content: '';
+  position: absolute;
+  top: 200px;
+  right: -10%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(212, 175, 55, 0.12),
+    transparent 60%
+  );
+  filter: blur(110px);
+  animation: floatRight 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+@keyframes floatLeft {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, -30px);
+  }
+}
+
+@keyframes floatRight {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, 30px);
+  }
 }
 
 .services-hero {
@@ -181,5 +273,70 @@
   }
 }
 
-
-
+@media (max-width: 768px) {
+  .services-hero {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .services-hero h1 {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+  }
+  
+  .lead {
+    font-size: 1rem;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .service-detail {
+    padding: var(--spacing-md);
+    margin: 0 var(--spacing-sm);
+  }
+  
+  .service-detail-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 3rem;
+  }
+  
+  .service-detail h2 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+  
+  .service-detail-description {
+    font-size: 0.95rem;
+  }
+  
+  .service-detail-section h3 {
+    font-size: 1.1rem;
+  }
+  
+  .features-list li {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+  
+  .sidebar-item {
+    padding: var(--spacing-sm);
+  }
+  
+  .sidebar-item h4 {
+    font-size: 0.8rem;
+  }
+  
+  .sidebar-item ul li,
+  .sidebar-item p {
+    font-size: 0.9rem;
+  }
+  
+  .services-cta {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .services-cta h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+  
+  .services-cta p {
+    font-size: 1rem;
+  }
+}

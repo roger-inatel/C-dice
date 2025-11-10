@@ -18,7 +18,7 @@ function HeroSection() {
           </div>
           
           <h1 className="hero-title">
-            Registramos o legado 
+            Registrando o legado 
             <span className="title-highlight">_das marcas</span>
           </h1>
           
