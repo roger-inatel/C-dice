@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import vetPortImg from '../assets/vet-port.png'
+import garage89Img from '../assets/garage89.png'
 import './Portfolio.css'
 
 function Portfolio() {
@@ -8,8 +9,8 @@ function Portfolio() {
       id: 1,
       title: 'Vet Port',
       category: 'Veterinária & Web Design',
-      image: vetPortImg,  // Usando a imagem importada
-      isRealImage: true,  // Flag para saber que é imagem real
+      image: vetPortImg,
+      isRealImage: true,
       description: 'Site completo para veterinária que atende a domicílio com design moderno e intuitivo.',
       tags: ['Veterinária', 'Web Design', 'React'],
       color: '#059669',
@@ -17,6 +18,17 @@ function Portfolio() {
     },
     {
       id: 2,
+      title: 'GARAGE89',
+      category: 'Estética Automotiva & Web Design',
+      image: garage89Img,
+      isRealImage: true,
+      description: 'Site profissional para estética automotiva com foco em serviços premium e agendamento online.',
+      tags: ['Automotiva', 'Web Design', 'React'],
+      color: '#dc2626',
+      link: 'https://garage-89.vercel.app/'
+    },
+    {
+      id: 3,
       title: 'TechFlow',
       category: 'Web Development',
       image: '💼',
@@ -26,7 +38,7 @@ function Portfolio() {
       color: '#3d5af1'
     },
     {
-      id: 3,
+      id: 4,
       title: 'Studio Zen',
       category: 'Branding',
       image: '🧘',
@@ -36,7 +48,7 @@ function Portfolio() {
       color: '#7c3aed'
     },
     {
-      id: 4,
+      id: 5,
       title: 'Fresh Market',
       category: 'Web Design & Development',
       image: '🥬',
@@ -46,7 +58,7 @@ function Portfolio() {
       color: '#059669'
     },
     {
-      id: 5,
+      id: 6,
       title: 'Arquiteta Digital',
       category: 'Portfolio Website',
       image: '🏛️',
@@ -56,7 +68,7 @@ function Portfolio() {
       color: '#d4af37'
     },
     {
-      id: 6,
+      id: 7,
       title: 'FitLife App',
       category: 'UI/UX Design',
       image: '💪',
