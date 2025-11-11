@@ -31,8 +31,8 @@ function Footer() {
 
             <div className="footer-column">
               <h4>Contato</h4>
-              <a href="mailto:contato@codice.studio">contato@codice.studio</a>
-              <a href="tel:+5535999999999">+55 (35) 99999-9999</a>
+              <a href="mailto:codicestyle@gmail.com">codicestyle@gmail.com</a>
+              <a href="tel:+5535998941011">+55 (35) 99894-1011</a>
               <span>Pouso Alegre, MG</span>
             </div>
 

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import './Contact.css'
 
 function Contact() {
@@ -10,6 +11,9 @@ function Contact() {
     message: ''
   })
 
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,18 +21,53 @@ function Contact() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.')
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: ''
-    })
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      // CORRIGIDO: Nomes devem corresponder ao template EmailJS
+      const templateParams = {
+        from_name: formData.name,      // ✅ Correto agora
+        from_email: formData.email,    // ✅ Correto agora
+        phone: formData.phone,         // ✅ Correto
+        service: formData.service,     // ✅ Correto
+        message: formData.message,     // ✅ Correto
+      }
+
+      const response = await emailjs.send(
+        'service_rf5bn25',
+        'template_4xzvy3c',
+        templateParams,
+        'T7z8UzEtfmwyM-kfw'
+      )
+
+      console.log('Email enviado com sucesso!', response.status, response.text)
+      setSubmitStatus('success')
+      
+      // Reset form após 10 segundos
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: ''
+        })
+        setSubmitStatus(null)
+      }, 10000)
+
+    } catch (error) {
+      console.error('Erro ao enviar email:', error)
+      setSubmitStatus('error')
+      
+      setTimeout(() => {
+        setSubmitStatus(null)
+      }, 10000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -59,14 +98,14 @@ function Contact() {
                   <div className="info-icon">📧</div>
                   <div>
                     <h4>Email</h4>
-                    <p>contato@codice.studio</p>
+                    <p>codicestyle@gmail.com</p>
                   </div>
                 </div>
                 <div className="info-item">
                   <div className="info-icon">📱</div>
                   <div>
                     <h4>Telefone</h4>
-                    <p>+55 (35) 99999-9999</p>
+                    <p>+55 (35) 99894-1011</p>
                   </div>
                 </div>
                 <div className="info-item">
@@ -96,6 +135,50 @@ function Contact() {
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>
+              {submitStatus === 'success' && (
+                <div className="form-message success-message">
+                  <div className="message-icon-wrapper">
+                    <div className="success-checkmark">
+                      <div className="check-icon">
+                        <span className="icon-line line-tip"></span>
+                        <span className="icon-line line-long"></span>
+                        <div className="icon-circle"></div>
+                        <div className="icon-fix"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="message-content">
+                    <h3>Mensagem enviada com sucesso!</h3>
+                    <p className="message-highlight">
+                      Obrigado por entrar em contato, <strong>{formData.name}</strong>!
+                    </p>
+                    <p className="message-detail">
+                      Recebemos sua mensagem e retornaremos em breve para o email <strong>{formData.email}</strong>.
+                    </p>
+                    <div className="message-footer">
+                      <span className="footer-icon">✨</span>
+                      <span>Aguarde nosso contato em até 24 horas</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="form-message error-message">
+                  <div className="message-icon-wrapper">
+                    <div className="error-icon">
+                      <span className="error-x">✕</span>
+                    </div>
+                  </div>
+                  <div className="message-content">
+                    <h3>Ops! Algo deu errado</h3>
+                    <p className="message-detail">
+                      Não foi possível enviar sua mensagem. Por favor, tente novamente ou entre em contato diretamente pelo email <strong>contato@codice.studio</strong>.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               <div className="form-group">
                 <label htmlFor="name">Nome completo</label>
                 <input
@@ -106,6 +189,7 @@ function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="Seu nome"
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -119,6 +203,7 @@ function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="seu@email.com"
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -131,6 +216,7 @@ function Contact() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="(00) 00000-0000"
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -142,6 +228,7 @@ function Contact() {
                   value={formData.service}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 >
                   <option value="">Selecione um serviço</option>
                   <option value="branding">Branding & Identidade Visual</option>
@@ -164,11 +251,16 @@ function Contact() {
                   required
                   rows="5"
                   placeholder="Conte-nos sobre seu projeto..."
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn btn-primary btn-full">
-                Enviar mensagem
+              <button 
+                type="submit" 
+                className="btn btn-primary btn-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Enviando...' : 'Enviar mensagem'}
               </button>
             </form>
           </div>

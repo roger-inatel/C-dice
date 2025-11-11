@@ -227,3 +227,299 @@
     gap: var(--spacing-lg);
   }
 }
+
+/* ========== MENSAGENS DE FEEDBACK ANIMADAS ========== */
+.form-message {
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: var(--spacing-lg);
+  animation: slideInScale 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mensagem de Sucesso */
+.success-message {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(16, 185, 129, 0.05));
+  border: 2px solid rgba(5, 150, 105, 0.3);
+  box-shadow: 0 8px 32px rgba(5, 150, 105, 0.2);
+}
+
+.success-message::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  to {
+    left: 100%;
+  }
+}
+
+/* Mensagem de Erro */
+.error-message {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.05));
+  border: 2px solid rgba(220, 38, 38, 0.3);
+  box-shadow: 0 8px 32px rgba(220, 38, 38, 0.2);
+}
+
+/* Ícone Wrapper */
+.message-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Checkmark de Sucesso Animado */
+.success-checkmark {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.check-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: content-box;
+  border: 4px solid #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  animation: scaleCheckmark 0.5s ease-in-out 0.3s both;
+}
+
+@keyframes scaleCheckmark {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.icon-line {
+  height: 5px;
+  background-color: #10b981;
+  display: block;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+}
+
+.icon-line.line-tip {
+  top: 46px;
+  left: 14px;
+  width: 25px;
+  transform: rotate(45deg);
+  animation: checkmarkTip 0.75s 0.6s both;
+}
+
+.icon-line.line-long {
+  top: 38px;
+  right: 8px;
+  width: 47px;
+  transform: rotate(-45deg);
+  animation: checkmarkLong 0.75s 0.8s both;
+}
+
+@keyframes checkmarkTip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 19px;
+  }
+  100% {
+    width: 25px;
+    left: 14px;
+    top: 46px;
+  }
+}
+
+@keyframes checkmarkLong {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  100% {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+  }
+}
+
+.icon-circle {
+  top: -4px;
+  left: -4px;
+  z-index: 10;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: content-box;
+  border: 4px solid rgba(16, 185, 129, 0.3);
+}
+
+.icon-fix {
+  top: 8px;
+  width: 5px;
+  left: 26px;
+  z-index: 1;
+  height: 85px;
+  position: absolute;
+  transform: rotate(-45deg);
+  background-color: var(--surface);
+}
+
+/* Ícone de Erro */
+.error-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scaleCheckmark 0.5s ease-in-out both;
+}
+
+.error-x {
+  font-size: 3rem;
+  color: #ef4444;
+  font-weight: bold;
+  animation: errorPulse 0.5s 0.3s both;
+}
+
+@keyframes errorPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Conteúdo da Mensagem */
+.message-content {
+  text-align: center;
+}
+
+.message-content h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.success-message h3 {
+  color: #10b981;
+}
+
+.error-message h3 {
+  color: #ef4444;
+}
+
+.message-highlight {
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.message-detail {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.message-detail strong {
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+.message-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.footer-icon {
+  font-size: 1.25rem;
+  animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* Estados desabilitados */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--surface);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .form-message {
+    padding: 1.5rem;
+  }
+  
+  .success-checkmark,
+  .check-icon,
+  .error-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .message-content h3 {
+    font-size: 1.5rem;
+  }
+  
+  .message-highlight {
+    font-size: 1rem;
+  }
+  
+  .message-detail {
+    font-size: 0.95rem;
+  }
+}
