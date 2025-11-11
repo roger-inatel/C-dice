@@ -27,13 +27,12 @@ function Contact() {
     setSubmitStatus(null)
 
     try {
-      // CORRIGIDO: Nomes devem corresponder ao template EmailJS
       const templateParams = {
-        from_name: formData.name,      // ✅ Correto agora
-        from_email: formData.email,    // ✅ Correto agora
-        phone: formData.phone,         // ✅ Correto
-        service: formData.service,     // ✅ Correto
-        message: formData.message,     // ✅ Correto
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message,
       }
 
       const response = await emailjs.send(
@@ -135,50 +134,6 @@ function Contact() {
             </div>
 
             <form className="contact-form" onSubmit={handleSubmit}>
-              {submitStatus === 'success' && (
-                <div className="form-message success-message">
-                  <div className="message-icon-wrapper">
-                    <div className="success-checkmark">
-                      <div className="check-icon">
-                        <span className="icon-line line-tip"></span>
-                        <span className="icon-line line-long"></span>
-                        <div className="icon-circle"></div>
-                        <div className="icon-fix"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="message-content">
-                    <h3>Mensagem enviada com sucesso!</h3>
-                    <p className="message-highlight">
-                      Obrigado por entrar em contato, <strong>{formData.name}</strong>!
-                    </p>
-                    <p className="message-detail">
-                      Recebemos sua mensagem e retornaremos em breve para o email <strong>{formData.email}</strong>.
-                    </p>
-                    <div className="message-footer">
-                      <span className="footer-icon">✨</span>
-                      <span>Aguarde nosso contato em até 24 horas</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="form-message error-message">
-                  <div className="message-icon-wrapper">
-                    <div className="error-icon">
-                      <span className="error-x">✕</span>
-                    </div>
-                  </div>
-                  <div className="message-content">
-                    <h3>Ops! Algo deu errado</h3>
-                    <p className="message-detail">
-                      Não foi possível enviar sua mensagem. Por favor, tente novamente ou entre em contato diretamente pelo email <strong>contato@codice.studio</strong>.
-                    </p>
-                  </div>
-                </div>
-              )}
-
               <div className="form-group">
                 <label htmlFor="name">Nome completo</label>
                 <input
@@ -189,7 +144,7 @@ function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="Seu nome"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || submitStatus === 'success'}
                 />
               </div>
 
@@ -203,7 +158,7 @@ function Contact() {
                   onChange={handleChange}
                   required
                   placeholder="seu@email.com"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || submitStatus === 'success'}
                 />
               </div>
 
@@ -216,7 +171,7 @@ function Contact() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="(00) 00000-0000"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || submitStatus === 'success'}
                 />
               </div>
 
@@ -228,7 +183,7 @@ function Contact() {
                   value={formData.service}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || submitStatus === 'success'}
                 >
                   <option value="">Selecione um serviço</option>
                   <option value="branding">Branding & Identidade Visual</option>
@@ -251,17 +206,45 @@ function Contact() {
                   required
                   rows="5"
                   placeholder="Conte-nos sobre seu projeto..."
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || submitStatus === 'success'}
                 ></textarea>
               </div>
 
-              <button 
-                type="submit" 
-                className="btn btn-primary btn-full"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Enviando...' : 'Enviar mensagem'}
-              </button>
+              {/* Botão normal ou mensagens de sucesso/erro */}
+              {submitStatus === 'success' ? (
+                <div className="form-message-inline success-message-inline">
+                  <div className="inline-icon">
+                    <div className="success-checkmark-small">
+                      <div className="check-icon-small">
+                        <span className="icon-line-small line-tip-small"></span>
+                        <span className="icon-line-small line-long-small"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="inline-content">
+                    <strong>Mensagem enviada!</strong>
+                    <p>Retornaremos em breve para <span className="highlight-text">{formData.email}</span></p>
+                  </div>
+                </div>
+              ) : submitStatus === 'error' ? (
+                <div className="form-message-inline error-message-inline">
+                  <div className="inline-icon">
+                    <span className="error-icon-small">✕</span>
+                  </div>
+                  <div className="inline-content">
+                    <strong>Erro ao enviar</strong>
+                    <p>Tente novamente ou use o email acima</p>
+                  </div>
+                </div>
+              ) : (
+                <button 
+                  type="submit" 
+                  className="btn btn-primary btn-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Enviando...' : 'Enviar mensagem'}
+                </button>
+              )}
             </form>
           </div>
         </div>
