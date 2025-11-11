@@ -1,22 +1,26 @@
 import { Link } from 'react-router-dom'
+import vetPortImg from '../assets/vet-port.png'
 import './Portfolio.css'
 
 function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: 'Café Aroma',
-      category: 'Branding & Web Design',
-      image: '☕',
-      description: 'Identidade visual completa e e-commerce para cafeteria premium.',
-      tags: ['Branding', 'E-commerce', 'UI/UX'],
-      color: '#8B4513'
+      title: 'Vet Port',
+      category: 'Veterinária & Web Design',
+      image: vetPortImg,  // Usando a imagem importada
+      isRealImage: true,  // Flag para saber que é imagem real
+      description: 'Site completo para veterinária que atende a domicílio com design moderno e intuitivo.',
+      tags: ['Veterinária', 'Web Design', 'React'],
+      color: '#059669',
+      link: 'https://vet-port.vercel.app/'
     },
     {
       id: 2,
       title: 'TechFlow',
       category: 'Web Development',
       image: '💼',
+      isRealImage: false,
       description: 'Plataforma SaaS para gestão de projetos com design moderno.',
       tags: ['React', 'SaaS', 'Dashboard'],
       color: '#3d5af1'
@@ -26,6 +30,7 @@ function Portfolio() {
       title: 'Studio Zen',
       category: 'Branding',
       image: '🧘',
+      isRealImage: false,
       description: 'Marca e materiais visuais para estúdio de yoga e bem-estar.',
       tags: ['Logo', 'Identidade', 'Print'],
       color: '#7c3aed'
@@ -35,6 +40,7 @@ function Portfolio() {
       title: 'Fresh Market',
       category: 'Web Design & Development',
       image: '🥬',
+      isRealImage: false,
       description: 'Marketplace online para produtos orgânicos e naturais.',
       tags: ['E-commerce', 'Mobile', 'SEO'],
       color: '#059669'
@@ -44,6 +50,7 @@ function Portfolio() {
       title: 'Arquiteta Digital',
       category: 'Portfolio Website',
       image: '🏛️',
+      isRealImage: false,
       description: 'Portfolio interativo para escritório de arquitetura moderna.',
       tags: ['Portfolio', '3D', 'Animation'],
       color: '#d4af37'
@@ -53,6 +60,7 @@ function Portfolio() {
       title: 'FitLife App',
       category: 'UI/UX Design',
       image: '💪',
+      isRealImage: false,
       description: 'Interface de aplicativo para acompanhamento fitness.',
       tags: ['Mobile App', 'UI/UX', 'Health'],
       color: '#dc2626'
@@ -77,8 +85,23 @@ function Portfolio() {
           <div className="projects-grid">
             {projects.map((project) => (
               <div key={project.id} className="project-card">
-                <div className="project-image" style={{ background: `linear-gradient(135deg, ${project.color}22, ${project.color}44)` }}>
-                  <span className="project-emoji">{project.image}</span>
+                <div 
+                  className="project-image" 
+                  style={{ 
+                    background: project.isRealImage 
+                      ? 'transparent' 
+                      : `linear-gradient(135deg, ${project.color}22, ${project.color}44)` 
+                  }}
+                >
+                  {project.isRealImage ? (
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="project-real-image"
+                    />
+                  ) : (
+                    <span className="project-emoji">{project.image}</span>
+                  )}
                 </div>
                 <div className="project-content">
                   <span className="project-category">{project.category}</span>
@@ -91,7 +114,18 @@ function Portfolio() {
                   </div>
                 </div>
                 <div className="project-overlay">
-                  <button className="btn btn-outline btn-sm">Ver projeto</button>
+                  {project.link ? (
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="btn btn-outline btn-sm"
+                    >
+                      Ver projeto ao vivo
+                    </a>
+                  ) : (
+                    <button className="btn btn-outline btn-sm">Ver projeto</button>
+                  )}
                 </div>
               </div>
             ))}
